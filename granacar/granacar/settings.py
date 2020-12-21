@@ -25,7 +25,7 @@ SECRET_KEY = 'n##1ehv2&tmba-d316b@y_s2js@lu)4oo3wgltt!5qvslzxao_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [grupo2ddsi.pythonanywhere.com]
 
 
 # Application definition
