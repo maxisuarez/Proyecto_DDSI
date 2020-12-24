@@ -22,7 +22,6 @@ class InformeContable(models.Model):
 	    verbose_name_plural ="InformesContables"
 
 class Bien(models.Model):
-    #falta poner el id del informe que va asociado a este, pero no sé como hacerlo y ambos ids son la clave primaria
     id=models.CharField(max_length=5, primary_key=True)
     nombre=models.CharField(max_length=50)
     descripcion=models.TextField(blank=True,max_length=200,null=True)
@@ -35,6 +34,12 @@ class Bien(models.Model):
     class Meta:
 	    verbose_name_plural ="bienes"
 
+# class ConsultaInformeContable(models.Model):
+#     informe=models.ForeignKey(InformeContable,primary_key=True,on_delete=models.CASCADE)
+#     balance=models.ForeignKey(BalanceFinanciero,on_delete=models.CASCADE)   
+#         class Meta:
+# 	        verbose_name_plural ="consultas informes contables"
+#             unique_together = (('informe', 'balance'),)
 class Vehiculo(models.Model):
     matricula = models.CharField(max_length=9, primary_key = True)
     numero_pasajeros = models.IntegerField()
