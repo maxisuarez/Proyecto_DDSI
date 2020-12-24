@@ -35,3 +35,46 @@ class Bien(models.Model):
     class Meta:
 	    verbose_name_plural ="bienes"
 
+class Vehiculo(models.Model):
+    matricula = models.CharField(max_length=9, primary_key = True)
+    numero_pasajeros = models.IntegerField()
+    combustible = models.CharField(max_length=30)
+    trasmision = models.CharField(max_length=30)
+    tipo = models.CharField(max_length=30)
+
+    DISPONIBLE = 'Disponible'
+    NO_DISPONIBLE = 'No disponible'
+    TALLER = 'En taller'
+
+    OPCIONES = [(DISPONIBLE, 'Entregado'),(NO_DISPONIBLE, 'No disponible'),(TALLER, 'En taller')]
+
+    estado = models.CharField(choices=OPCIONES, max_length=30, default=DISPONIBLE)
+
+    NECESARIO = 'Necesario'
+    NO_NECESARIO = 'No necesario'
+
+    OPCIONES = [
+		(NECESARIO, 'Necesario'),
+		(NO_NECESARIO, 'No necesario')
+	]
+
+    mantenimiento = models.CharField(choices=OPCIONES, max_length=30, default=DISPONIBLE)
+    situacion = models.CharField(max_length=100)
+
+
+class Producto(models.Model):
+    factura = models.ForeignKey(Factura,on_delete=models.CASCADE)
+    idProducto = models.IntegerField()
+    nombre = models.CharField(max_length=10)
+    cantidad = models.IntegerField()
+    precio = models.IntegerField()
+
+"""
+class Contiene(models.Model):
+    alquiler = models.ForeignKey(SolicitaAlquiler, primary_key=True)
+    vehiculo = models.ForeignKey(Vehiculo)
+
+class ConsultaFactura(models.Model):
+    balanceFinaciero = models.ForeignKey(BalanceFinanciero, primary_key=True)
+    factura = models.ForeignKey(Factura)
+"""
