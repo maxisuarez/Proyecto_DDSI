@@ -1,0 +1,55 @@
+{%extends "base.html" %}
+
+{%block title %} GranaCar {% endblock %}
+
+{%block titulo %}  {% endblock %}
+{%block contenido %}
+
+<div class="container text-center pt-5">
+    <h1>Lista de puestos</h1>
+      <a class="btn btn-success btn-lg" href="crearPuesto">Añadir puesto</a>
+      <br>
+      <br>
+      <table  class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Nombre</th>
+            <th>Departamento</th>
+            <th>Nº Vacantes</th>
+            <th>Aptitudes</th>
+            <th>Requisitos</th>
+            <th>Sueldo</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+          </tr>
+        </thead><tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.nombre_puesto }}</td>
+            <td>{{ item.departamento }}</td>
+            <td>{{ item.numero_de_vacantes }}</td>
+            <td>{{ item.aptitudes_necesarias }}</td>
+            <td>{{ item.requisitos_puesto }}</td>
+            <td>{{ item.sueldo }}</td>
+            <td> 
+              <center>
+                 {% csrf_token %}
+                  <a class="btn btn-info btn-sm" href="/editarPuesto/{{ item.pk }}">Editar</a>
+              </center>
+            </td>
+            <td> 
+              <center>
+                {% csrf_token %}
+                 <a class="btn btn-danger btn-sm" href="/borrarPuesto/{{ item.pk }}">Borrar</a>
+              </center>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+{% endblock %}

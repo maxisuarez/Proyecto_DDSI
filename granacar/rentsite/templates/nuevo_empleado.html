@@ -1,0 +1,28 @@
+{%extends "base.html" %}
+
+{%block title %} GranaCar {% endblock %}
+
+{%block titulo %}  {% endblock %}
+{%block formulario %}
+
+<body>
+  <div class="container text-center pt-5">
+    <h1>Registro empleado</h1>
+    <p>Introduce la información del empleado</p>
+    <div class='jumbotron'>
+      <form action="{% url 'crearEmpleado' %}" method="post">
+        {% csrf_token %}
+        {% for field in register_form %}
+        <div class='form-group'>
+          <label for="{{ field.name }}">{{ field.label }}</label>
+          {{ field }}
+        </div>
+        {% endfor %}
+        <br>
+        <center><button type="submit" class="btn btn-success btn-lg">Registrar nuevo empleado</button></center>
+      </form>
+    </div>
+  </div>
+
+
+{% endblock %}
