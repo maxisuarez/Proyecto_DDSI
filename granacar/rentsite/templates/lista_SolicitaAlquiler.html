@@ -1,0 +1,56 @@
+{%extends "base.html" %}
+
+{%block title %} SolicitaAlquileres {% endblock %}
+
+{%block titulo %}  {% endblock %}
+{%block contenido %}
+
+
+
+<div class="container text-center pt-5">
+    <h1>Lista de SolicitaAlquileres</h1>
+      <a class="btn btn-success btn-lg" href="crearSolicitaAlquiler">Añadir SolicitaAlquiler</a>
+      <br>
+      <br>
+      <table  class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>idAlquiler</th>
+            <th>ganancia</th>
+            <th>precio</th>
+            <th>duracion</th>
+            <th>dni</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead><tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.idAlquiler}}</td>
+            <td>{{ item.ganancia }}</td>
+            <td>{{ item.precio }}</td>
+            <td>{{ item.duracion }}</td>
+            <td>{{ item.dni }}</td>
+          
+            <td> 
+              <center>
+                 {% csrf_token %}
+                  <a class="btn btn-info btn-sm" href="/editarSolicitaAlquiler/{{ item.pk }}">Editar</a>
+              </center>
+            </td>
+            <td> 
+              <center>
+                {% csrf_token %}
+                 <a class="btn btn-danger btn-sm" href="/borrarSolicitaAlquiler/{{ item.pk }}">Borrar</a>
+              </center>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -102,7 +102,36 @@ class BalanceFinanciero(models.Model):
   bienes_actuales = models.DecimalField(max_digits=20,decimal_places=2)
   deudas = models.DecimalField(max_digits=20,decimal_places=2)
 
+#IDBalance VARCHAR(10) REFERENCES BalanceFinanciero(IDBalance) NOT NULL,
+# IDEmpleado VARCHAR(10) NOT NULL,
+#  Primary KEy ( IDBalance, IDEmpleado)
 
+class ConsultaEmpleado(models.Model):
+  class Meta:
+        unique_together = (('idBalance', 'idEmpleado'),)
+  idBalance =  models.ForeignKey(BalanceFinanciero, on_delete=models.CASCADE)
+  idEmpleado = models.ForeignKey(EmpleadoTrabaja, on_delete=models.CASCADE)
+
+
+#DNI VARCHAR(9) primary key references SolicitaAlquiler(dni), Nombrecliente VARCHAR(40));
+class Cliente(models.Model):
+    dni = models.CharField(max_length=9, primary_key=True)
+    nombrecliente= models.CharField(max_length=40)
+
+
+#SolicitaAlquiler(  IDalquiler VARCHAR(5) PRIMARY KEY , ganancia REAL , precio REAL, duracion VARCHAR(34), dni VARCHAR(9) NOT NULL);
+class SolicitaAlquiler(models.Model):
+  idAlquiler = models.CharField(max_length=5, primary_key=True)
+  ganancia = models.DecimalField(max_digits=8,decimal_places=2)
+  precio = models.DecimalField(max_digits=8,decimal_places=2)
+  duracion = models.CharField(max_length=34)
+  dni =  models.ForeignKey(Cliente, on_delete=models.CASCADE,default=None)
+
+class ConsultaAlquiler(models.Model):
+  class Meta:
+      unique_together = (('idAlquiler', 'idBalance'),)
+  idAlquiler = models.ForeignKey(SolicitaAlquiler, on_delete=models.CASCADE) 
+  idBalance = models.ForeignKey(BalanceFinanciero, on_delete=models.CASCADE) 
 
 
 

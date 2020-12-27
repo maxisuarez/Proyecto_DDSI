@@ -33,8 +33,30 @@ urlpatterns = [
   path('crearProducto', views.crearProducto, name='crearProducto'),
   path('editarProducto/<item_id>', views.editarProducto, name='editarProducto'),
   path('borrarProducto/<item_id>', views.borrarProducto, name='borrarProducto'),
-path('contiene', views.contiene, name='contiene'),
+  
+   path('ConsultaEmpleados', views.ConsultaEmpleados, name='ConsultaEmpleados'),
+  path('crearConsultaEmpleado', views.crearConsultaEmpleado, name='crearConsultaEmpleado'),
+  path('editarConsultaEmpleado/<item_id>', views.editarConsultaEmpleado, name='editarConsultaEmpleado'),
+  path('borrarConsultaEmpleado/<item_id>', views.borrarConsultaEmpleado, name='borrarConsultaEmpleado'),
+
+  path('Clientes', views.Clientes, name='Clientes'),
+  path('crearCliente', views.crearCliente, name='crearCliente'),
+  path('editarCliente/<item_id>', views.editarCliente, name='editarCliente'),
+  path('borrarCliente/<item_id>', views.borrarCliente, name='borrarCliente'),
+
+  path('ConsultaAlquileres', views.ConsultaAlquiler, name='ConsultaAlquiler'),
+  path('crearConsultaAlquiler', views.crearConsultaAlquiler, name='crearConsultaAlquiler'),
+  path('editarConsultaAlquiler/<item_id>', views.editarConsultaAlquiler, name='editarConsultaAlquiler'),
+  path('borrarConsultaAlquiler/<item_id>', views.borrarConsultaAlquiler, name='borrarConsultaAlquiler'),
+
+  path('SolicitaAlquileres', views.SolicitaAlquileres, name='SolicitaAlquileres'),
+  path('crearSolicitaAlquiler', views.crearSolicitaAlquiler, name='crearSolicitaAlquiler'),
+  path('editarSolicitaAlquiler/<item_id>', views.editarSolicitaAlquiler, name='editarSolicitaAlquiler'),
+  path('borrarSolicitaAlquiler/<item_id>', views.borrarSolicitaAlquiler, name='borrarSolicitaAlquiler'),
+  
+  path('contiene', views.contiene, name='contiene'),
   path('crearContiene', views.crearContiene, name='crearContiene'),
   path('editarContiene/<item_id>', views.editarContiene, name='editarContiene'),
   path('borrarContiene/<item_id>', views.borrarContiene, name='borrarContiene'),
+
 ]

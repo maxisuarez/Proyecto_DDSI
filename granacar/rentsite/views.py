@@ -272,6 +272,162 @@ def borrarProducto(request, item_id):
     return render(request,'borrar_Producto.html',{'instance': instance})
 
 
+def crearConsultaEmpleado(request):
+    error=None
+    if request.method == 'POST':
+        register_form = ConsultaEmpleadoForm(request.POST)
+        if register_form.is_valid():
+            register_form.save()
+            return redirect('ConsultaEmpleado')
+        else:
+            error=register_form.errors
+    else:
+        register_form = ConsultaEmpleadoForm()
+    return render(request,'nuevo_ConsultaEmpleado.html', {'form': register_form,'error': error})
+
+def ConsultaEmpleados(request):
+    items = ConsultaEmpleado.objects.all()
+    return render(request,'lista_ConsultaEmpleado.html', {'items': items })
+
+def editarConsultaEmpleado(request, item_id):
+    error=None
+    instancia = ConsultaEmpleado.objects.get(pk=item_id)
+    if request.method == 'POST':
+        form = ConsultaEmpleadoForm(request.POST, instance=instancia)
+        if form.is_valid():
+            form.save()
+            return redirect('ConsultaEmpleados')
+        else:
+            error=form.errors
+    else:
+        form = ConsultaEmpleadoForm(instance=instancia)
+
+    return render(request,'editar_ConsultaEmpleado.html', {'form': form, 'item_id':item_id, 'error': error})
+
+def borrarConsultaEmpleado(request, item_id):
+    instance = ConsultaEmpleado.objects.get(pk=item_id)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('ConsultaEmpleados')
+    return render(request,'borrar_ConsultaEmpleado.html',{'instance': instance})
+
+def crearCliente(request):
+    error=None
+    if request.method == 'POST':
+        register_form = ClienteForm(request.POST)
+        if register_form.is_valid():
+            register_form.save()
+            return redirect('Clientes')
+        else:
+            error=register_form.errors
+    else:
+        register_form = ClienteForm()
+    return render(request,'nuevo_Cliente.html', {'form': register_form,'error': error})
+
+def Clientes(request):
+    items = Cliente.objects.all()
+    return render(request,'lista_Clientes.html', {'items': items })
+
+def editarCliente(request, item_id):
+    error=None
+    instancia = Cliente.objects.get(pk=item_id)
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, instance=instancia)
+        if form.is_valid():
+            form.save()
+            return redirect('Clientes')
+        else:
+            error=form.errors
+    else:
+        form = ClienteForm(instance=instancia)
+
+    return render(request,'editar_Cliente.html', {'form': form, 'item_id':item_id, 'error': error})
+
+def borrarCliente(request, item_id):
+    instance = Cliente.objects.get(pk=item_id)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('Clientes')
+    return render(request,'borrar_Cliente.html',{'instance': instance})
+
+def crearConsultaAlquiler(request):
+    error=None
+    if request.method == 'POST':
+        register_form = ConsultaAlquilerForm(request.POST)
+        if register_form.is_valid():
+            register_form.save()
+            return redirect('ConsultaAlquileres')
+        else:
+            error=register_form.errors
+    else:
+        register_form = ConsultaAlquilerForm()
+    return render(request,'nuevo_ConsultaAlquiler.html', {'form': register_form,'error': error})
+
+def ConsultaAlquileres(request):
+    items = ConsultaAlquiler.objects.all().order_by('fecha')
+    return render(request,'lista_ConsultaAlquiler.html', {'items': items })
+
+def editarConsultaAlquiler(request, item_id):
+    error=None
+    instancia = ConsultaAlquiler.objects.get(pk=item_id)
+    if request.method == 'POST':
+        form = ConsultaAlquilerForm(request.POST, instance=instancia)
+        if form.is_valid():
+            form.save()
+            return redirect('ConsultaAlquileres')
+        else:
+            error=form.errors
+    else:
+        form = ConsultaAlquilerForm(instance=instancia)
+
+    return render(request,'editar_ConsultaAlquiler.html', {'form': form, 'item_id':item_id, 'error': error})
+
+def borrarConsultaAlquiler(request, item_id):
+    instance = ConsultaAlquiler.objects.get(pk=item_id)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('ConsultaAlquileres')
+    return render(request,'borrar_ConsultaAlquiler.html',{'instance': instance})
+
+def crearSolicitaAlquiler(request):
+    error=None
+    if request.method == 'POST':
+        register_form = SolicitaAlquilerForm(request.POST)
+        if register_form.is_valid():
+            register_form.save()
+            return redirect('SolicitaAlquileres')
+        else:
+            error=register_form.errors
+    else:
+        register_form = SolicitaAlquilerForm()
+    return render(request,'nuevo_SolicitaAlquiler.html', {'form': register_form,'error': error})
+
+def SolicitaAlquileres(request):
+    items = SolicitaAlquiler.objects.all()
+    return render(request,'lista_SolicitaAlquiler.html', {'items': items })
+
+def editarSolicitaAlquiler(request, item_id):
+    error=None
+    instancia = SolicitaAlquiler.objects.get(pk=item_id)
+    if request.method == 'POST':
+        form = SolicitaAlquilerForm(request.POST, instance=instancia)
+        if form.is_valid():
+            form.save()
+            return redirect('SolicitaAlquileres')
+        else:
+            error=form.errors
+    else:
+        form = SolicitaAlquilerForm(instance=instancia)
+
+    return render(request,'editar_SolicitaAlquiler.html', {'form': form, 'item_id':item_id, 'error': error})
+
+def borrarSolicitaAlquiler(request, item_id):
+    instance = SolicitaAlquiler.objects.get(pk=item_id)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('SolicitaAlquiler')
+    return render(request,'borrar_SolicitaAlquiler.html',{'instance': instance})
+
 def crearContiene(request):
     error=None
     if request.method == 'POST':
