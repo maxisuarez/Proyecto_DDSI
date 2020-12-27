@@ -1,0 +1,60 @@
+{%extends "base.html" %}
+
+{%block title %} vehiculos {% endblock %}
+
+{%block titulo %}  {% endblock %}
+{%block contenido %}
+
+<div class="container text-center pt-5">
+    <h1>Lista de vehiculos</h1>
+      <a class="btn btn-success btn-lg" href="crearVehiculo">Añadir vehiculo</a>
+      <br>
+      <br>
+      <table  class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Nombre</th>
+            <th>Departamento</th>
+            <th>Nº Pasajeros</th>
+            <th>Combustible</th>
+            <th>Trasmision</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Mantenimiento</th>
+            <th>Situación</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead><tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.matricula }}</td>
+            <td>{{ item.numero_pasajeros }}</td>
+            <td>{{ item.combustible }}</td>            
+            <td>{{ item.trasmision }}</td>
+            <td>{{ item.tipo }}</td>
+            <td>{{ item.estado }}</td>
+            <td>{{ item.mantenimiento }}</td>
+            <td>{{ item.situacion }}</td>
+            <td> 
+              <center>
+                 {% csrf_token %}
+                  <a class="btn btn-info btn-sm" href="/editarVehiculo/{{ item.pk }}">Editar</a>
+              </center>
+            </td>
+            <td> 
+              <center>
+                {% csrf_token %}
+                 <a class="btn btn-danger btn-sm" href="/borrarVehiculo/{{ item.pk }}">Borrar</a>
+              </center>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+{% endblock %}

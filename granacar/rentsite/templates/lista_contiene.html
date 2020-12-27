@@ -1,0 +1,45 @@
+{%extends "base.html" %}
+
+{%block title %} Cambios {% endblock %}
+
+{%block titulo %}  {% endblock %}
+{%block contenido %}
+
+<div class="container text-center pt-5">
+    <h1>Lista de contiene</h1>
+      <a class="btn btn-success btn-lg" href="crearContiene">Añadir cambio</a>
+      <br>
+      <br>
+      <table  class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Alquiler</th>
+            <th>Vehiculo</th>            
+          </tr>
+        </thead><tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.alquiler }}</td>
+            <td>{{ item.vehiculo }}</td>           
+            <td> 
+              <center>
+                 {% csrf_token %}
+                  <a class="btn btn-info btn-sm" href="/editarContiene/{{ item.pk }}">Editar</a>
+              </center>
+            </td>
+            <td> 
+              <center>
+                {% csrf_token %}
+                 <a class="btn btn-danger btn-sm" href="/borrarContiene/{{ item.pk }}">Borrar</a>
+              </center>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+{% endblock %}

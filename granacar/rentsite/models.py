@@ -44,7 +44,7 @@ class Bien(models.Model):
 
 # class ConsultaInformeContable(models.Model):
 #     informe=models.ForeignKey(InformeContable,primary_key=True,on_delete=models.CASCADE)
-#     balance=models.ForeignKey(BalanceFinanciero,on_delete=models.CASCADE)   
+#     balance=models.ForeignKey(BalanceFinanciero,on_delete=models.CASCADE)
 #         class Meta:
 # 	        verbose_name_plural ="consultas informes contables"
 #             unique_together = (('informe', 'balance'),)
@@ -116,7 +116,7 @@ class ConsultaEmpleado(models.Model):
 
 class ConsultaInformeContable(models.Model):
     informe=models.ForeignKey(InformeContable,primary_key=True,on_delete=models.CASCADE)
-    balance=models.ForeignKey(BalanceFinanciero,on_delete=models.CASCADE)   
+    balance=models.ForeignKey(BalanceFinanciero,on_delete=models.CASCADE)
         class Meta:
 	        verbose_name_plural ="consultas informes contables"
             unique_together = (('informe', 'balance'),)
@@ -130,4 +130,3 @@ class ConsultaFactura(models.Model):
     balanceFinaciero = models.ForeignKey(BalanceFinanciero, primary_key=True)
     factura = models.ForeignKey(Factura)
 """
-

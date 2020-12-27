@@ -8,7 +8,7 @@ class PuestoForm(ModelForm):
     class Meta:
         model = Puesto
         fields = ['nombre_puesto', 'departamento', 'numero_de_vacantes', 'aptitudes_necesarias', 'requisitos_puesto', 'sueldo']
-        
+
     def registrar(self):
         nuevo_item = Puesto(nombre_puesto=self.data['nombre_puesto'],
                         departamento=self.data['departamento'],
@@ -24,12 +24,12 @@ class EmpleadoForm(ModelForm):
     class Meta:
         model = EmpleadoTrabaja
         fields = ['idEmpleado', 'nombre', 'apellidos', 'nombre_puesto', 'cuenta_bancaria', 'fecha_pago', 'fecha_alta', 'fecha_baja']
-        
+
 
     fecha_pago = forms.DateField(widget=forms.SelectDateWidget(years=range(2000,2021)))
     fecha_alta = forms.DateField(widget=forms.SelectDateWidget(years=range(2000,2021)))
     fecha_baja = forms.DateField(widget=forms.SelectDateWidget(years=range(2000,2021)))
-    
+
     def registrar(self):
         fechaPago = datetime(int(self.data['fecha_pago_year']),
                         int(self.data['fecha_pago_month']),
@@ -42,7 +42,7 @@ class EmpleadoForm(ModelForm):
                         int(self.data['fecha_baja_day']))
         nuevo_empleado = EmpleadoTrabaja(idEmpleado = self.data['idEmpleado'],
                         nombre = self.data['nombre'],
-                        apellidos = self.data['apellidos'], 
+                        apellidos = self.data['apellidos'],
                         nombre_puesto = self.instance.nombre_puesto,
                         cuenta_bancaria = self.data['cuenta_bancaria'],
                         fecha_pago = fechaPago,
@@ -58,7 +58,7 @@ class FacturaForm(ModelForm):
         model = Factura
         fields = '__all__'
         #exclude = ('id',)
-        
+
 
     #fecha = forms.DateField(widget=forms.SelectDateWidget(years=range(2000,2021)))
     #id=forms.CharField(max_length=5,min_length=5)
@@ -72,4 +72,19 @@ class InformeForm(ModelForm):
 class BienForm(ModelForm):
     class Meta:
         model = Bien
+        fields = '__all__'
+
+class VehiculoForm(ModelForm):
+    class Meta:
+        model = Vehiculo
+        fields = '__all__'
+
+class ProductoForm(ModelForm):
+    class Meta:
+        model = Producto
+        fields = '__all__'
+
+class ContieneForm(ModelForm):
+    class Meta:
+        model = Contiene
         fields = '__all__'

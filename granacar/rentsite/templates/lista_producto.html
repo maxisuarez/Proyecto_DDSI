@@ -1,0 +1,51 @@
+{%extends "base.html" %}
+
+{%block title %} Cambios {% endblock %}
+
+{%block titulo %}  {% endblock %}
+{%block contenido %}
+
+<div class="container text-center pt-5">
+    <h1>Lista de productos</h1>
+      <a class="btn btn-success btn-lg" href="crearProducto">Añadir producto</a>
+      <br>
+      <br>
+      <table  class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Factura</th>
+            <th>IDProducto</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>            
+          </tr>
+        </thead><tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.factura }}</td>
+            <td>{{ item.idProducto }}</td>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.cantidad }}</td>
+            <td>{{ item.precio }}</td>
+            <td> 
+              <center>
+                 {% csrf_token %}
+                  <a class="btn btn-info btn-sm" href="/editarProducto/{{ item.pk }}">Editar</a>
+              </center>
+            </td>
+            <td> 
+              <center>
+                {% csrf_token %}
+                 <a class="btn btn-danger btn-sm" href="/borrarProducto/{{ item.pk }}">Borrar</a>
+              </center>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+{% endblock %}
