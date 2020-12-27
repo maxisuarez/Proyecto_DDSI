@@ -34,10 +34,10 @@ class Bien(models.Model):
     nombre=models.CharField(max_length=50)
     descripcion=models.TextField(blank=True,max_length=200,null=True)
     valor=models.DecimalField(max_digits=8,decimal_places=2)
-    informe=models.ForeignKey(InformeContable,on_delete=models.CASCADE)
+    informe=models.ForeignKey(InformeContable,on_delete=models.CASCADE,default=None)
 
     def __str__(self):
-        return "Bien: " + self.nombre + " con identificador: " + self.id + " asociado al informe: " + '{}'.format(self.informe.id)
+        return self.nombre + " con identificador " + self.id
 
     class Meta:
 	    verbose_name_plural ="bienes"
@@ -76,7 +76,7 @@ class Vehiculo(models.Model):
 
 
 class Producto(models.Model):
-    factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
+    factura = models.ForeignKey(Factura, on_delete=models.CASCADE,default=None)
     idProducto = models.IntegerField()
     nombre = models.CharField(max_length=10)
     cantidad = models.IntegerField()

@@ -53,4 +53,23 @@ class EmpleadoForm(ModelForm):
 
 
 
+class FacturaForm(ModelForm):
+    class Meta:
+        model = Factura
+        fields = '__all__'
+        #exclude = ('id',)
+        
 
+    #fecha = forms.DateField(widget=forms.SelectDateWidget(years=range(2000,2021)))
+    #id=forms.CharField(max_length=5,min_length=5)
+
+
+class InformeForm(ModelForm):
+    class Meta:
+        model = InformeContable
+        fields = '__all__'
+
+class BienForm(ModelForm):
+    class Meta:
+        model = Bien
+        fields = '__all__'

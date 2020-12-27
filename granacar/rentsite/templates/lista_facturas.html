@@ -1,0 +1,56 @@
+{%extends "base.html" %} {%block title %} Facturas {% endblock %} {%block titulo %} {% endblock %} {%block contenido %}
+
+<div class="container text-center pt-5">
+    <h1>Lista de facturas</h1>
+    <a class="btn btn-success btn-lg" href="crearFactura">Añadir factura</a>
+    <br>
+    <br>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Proveedor</th>
+                <th>Precio total (en €)</th>
+                <th>Productos</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.fecha }}</td>
+                {% if item.proveedor %}
+                <td>{{ item.proveedor }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                <td>{{ item.total }}</td>
+                <td>{% for i in item.factura_set.all %} {{ i }}
+                    <br/>----------<br/>{% endfor %}
+                </td>
+                <td>
+                    <center>
+                        {% csrf_token %}
+                        <a class="btn btn-info btn-sm" href="/editarFactura/{{ item.pk }}">Editar</a>
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        {% csrf_token %}
+                        <a class="btn btn-danger btn-sm" href="/borrarFactura/{{ item.pk }}">Borrar</a>
+                    </center>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+{% endblock %}
