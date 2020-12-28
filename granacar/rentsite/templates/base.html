@@ -32,7 +32,7 @@
 							Recursos humanos
 						</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{% url 'puestos' %}">Puestos</a>
+                                <a class="dropdown-item" href="{% url 'Puestos' %}">Puestos</a>
                                 <a class="dropdown-item" href="{% url 'empleados' %}">Empleados</a>
                                 <!--
                                 
@@ -49,23 +49,38 @@
                                 <a class="dropdown-item" href="{% url 'productos' %}">Productos</a>
                                 <a class="dropdown-item" href="{% url 'bienes' %}">Bienes</a>
                                 <a class="dropdown-item" href="{% url 'informes' %}">Informes</a>
+                                <a class="dropdown-item" href="{% url 'balanaceFinancieros' %}">Balances Financieros</a>
                              
                             </div>
                         </li>
-                                                <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Almacen
+						</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'vehiculos' %}">Vehiculos</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Logística
 						</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                
+                                <a class="dropdown-item" href="{% url 'Clientes' %}">Clientes</a>
+                                <a class="dropdown-item" href="{% url 'SolicitaAlquileres' %}">SolicitaAlquiler</a>
+                                <a class="dropdown-item" href="{% url 'vehiculos' %}">Vehiculos</a>
                             </div>
                         </li>
-                                                <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							
+							Relaciones
 						</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                             
+                                <a class="dropdown-item" href="{% url 'ConsultaEmpleados' %}">ConsultaEmpleado</a>
+                                 <a class="dropdown-item" href="{% url 'ConsultaAlquileres' %}">ConsultaAlquiler</a>
+                                 <a class="dropdown-item" href="{% url 'ConsultaInformeContables' %}">ConsultaInformeContable</a>
+                                 <a class="dropdown-item" href="{% url 'contiene' %}">Contiene</a>
+                                 <a class="dropdown-item" href="{% url 'ConsultaFacturas' %}">ConsultaFacturas</a>
                             </div>
                         </li>
                 </ul>

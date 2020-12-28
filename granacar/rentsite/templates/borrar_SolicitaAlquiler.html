@@ -2,7 +2,7 @@
 
 <form action="{% url 'borrarSolicitaAlquiler' instance.pk %}" method="POST" class="my-5">{% csrf_token %}
     <div class="container-fluid">
-        <p> ¿Estás seguro que quieres eliminar el SolicitaAlquiler {{ instance }}? </p>
+        <p> ¿Estás seguro que quieres eliminar el SolicitaAlquiler <b>{{ instance }}</b>? </p>
         <div class="row mb-2">
             <div class="col-md-auto my-2">
                 <button type="submit" class="btn btn-danger text-center" name="eliminar">Confirmar</button>

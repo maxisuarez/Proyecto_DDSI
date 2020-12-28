@@ -1,8 +1,8 @@
-{% extends 'base.html' %} {%block title %} Cambios {% endblock %} {% block formulario %}
+{% extends 'base.html' %} {%block title %} Consulta Informe Contables {% endblock %} {% block formulario %}
 
 <form action="{% url 'borrarConsultaEmpleado' instance.pk %}" method="POST" class="my-5">{% csrf_token %}
     <div class="container-fluid">
-        <p> ¿Estás seguro que quieres eliminar el ConsultaEmpleado {{ instance }}? </p>
+        <p> ¿Estás seguro que quieres eliminar el ConsultaEmpleado <b>{{ instance }}</b>? </p>
         <div class="row mb-2">
             <div class="col-md-auto my-2">
                 <button type="submit" class="btn btn-danger text-center" name="eliminar">Confirmar</button>

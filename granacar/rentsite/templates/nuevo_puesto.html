@@ -1,28 +1,25 @@
 {%extends "base.html" %}
 
-{%block title %} GranaCar {% endblock %}
-
-{%block titulo %}  {% endblock %}
+{%block title %} Puestos {% endblock %}
+{% load crispy_forms_tags %}
 {%block formulario %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    <p class=error><strong>Error:</strong> {{ error }}
+</div> {% endif %}
 
 <body>
   <div class="container text-center pt-5">
-    <h1>Registro puesto</h1>
-    <p>Introduce la información del puesto</p>
+    <h1>Registro nuevo Puesto</h1>
+    <p>Introduce la información del Puesto</p>
     <div class='jumbotron'>
       <form action="{% url 'crearPuesto' %}" method="post">
-        {% csrf_token %}
-        {% for field in register_form %}
-        <div class='form-group'>
-          <label for="{{ field.name }}">{{ field.label }}</label>
-          {{ field }}
-        </div>
-        {% endfor %}
+        {% csrf_token %} {{ form|crispy }}
         <br>
-        <center><button type="submit" class="btn btn-success btn-lg">Registrar nuevo puesto</button></center>
+        <center><button type="submit" class="btn btn-success btn-lg">Guardar</button></center>
       </form>
     </div>
   </div>
 
-
+</body>
 {% endblock %}

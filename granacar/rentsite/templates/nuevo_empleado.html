@@ -3,7 +3,15 @@
 {%block title %} GranaCar {% endblock %}
 
 {%block titulo %}  {% endblock %}
+{% load crispy_forms_tags %}
 {%block formulario %}
+<br>
+<br>
+
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    <p class=error><strong>Error:</strong> {{ error }}
+</div> {% endif %}
 
 <body>
   <div class="container text-center pt-5">
@@ -12,12 +20,7 @@
     <div class='jumbotron'>
       <form action="{% url 'crearEmpleado' %}" method="post">
         {% csrf_token %}
-        {% for field in register_form %}
-        <div class='form-group'>
-          <label for="{{ field.name }}">{{ field.label }}</label>
-          {{ field }}
-        </div>
-        {% endfor %}
+            {{ form|crispy }}
         <br>
         <center><button type="submit" class="btn btn-success btn-lg">Registrar nuevo empleado</button></center>
       </form>

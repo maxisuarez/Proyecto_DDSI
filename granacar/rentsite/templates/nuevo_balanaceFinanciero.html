@@ -1,6 +1,6 @@
 {%extends "base.html" %}
 
-{%block title %} Consulta Informe Contables {% endblock %}
+{%block title %} Balance Financiero {% endblock %}
 {% load crispy_forms_tags %}
 {%block formulario %}
 {% if error %}
@@ -10,10 +10,10 @@
 
 <body>
   <div class="container text-center pt-5">
-    <h1>Registro nuevo producto</h1>
-    <p>Introduce la información del producto</p>
+    <h1>Registro nuevo balance financiero</h1>
+    <p>Introduce la información del balance financiero</p>
     <div class='jumbotron'>
-      <form action="{% url 'crearProducto' %}" method="post">
+      <form action="{% url 'crearBalanceFinanciero' %}" method="post">
         {% csrf_token %} {{ form|crispy }}
         <br>
         <center><button type="submit" class="btn btn-success btn-lg">Guardar</button></center>

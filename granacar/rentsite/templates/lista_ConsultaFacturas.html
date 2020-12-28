@@ -1,13 +1,13 @@
 {%extends "base.html" %}
 
-{%block title %} Puestos {% endblock %}
+{%block title %} Consulta faturas {% endblock %}
 
 {%block titulo %}  {% endblock %}
 {%block contenido %}
 
 <div class="container text-center pt-5">
-    <h1>Lista de Puestos</h1>
-      <a class="btn btn-success btn-lg" href="crearPuesto">Añadir Puesto</a>
+    <h1>Lista de ConsultaFacturas</h1>
+      <a class="btn btn-success btn-lg" href="crearConsultaFactura">Añadir ConsultaFactura</a>
       <br>
       <br>
       <table  class="table table-striped table-bordered">
@@ -18,29 +18,29 @@
             <th>Nº Vacantes</th>
             <th>Aptitudes</th>
             <th>Requisitos</th>
-            <th>Sueldo(€)</th>
+            <th>Sueldo</th>
             <th></th>
             <th></th>
           </tr>
         </thead><tbody>
           {% for item in items %}
           <tr>
-            <td>{{ item.nombre_puesto }}</td>
+            <td>{{ item.nombre_ConsultaFactura }}</td>
             <td>{{ item.departamento }}</td>
             <td>{{ item.numero_de_vacantes }}</td>
             <td>{{ item.aptitudes_necesarias }}</td>
-            <td>{{ item.requisitos_Puesto }}</td>
+            <td>{{ item.requisitos_ConsultaFactura }}</td>
             <td>{{ item.sueldo }}</td>
             <td> 
               <center>
                  {% csrf_token %}
-                  <a class="btn btn-info btn-sm" href="/editarPuesto/{{ item.pk }}">Editar</a>
+                  <a class="btn btn-info btn-sm" href="/editarConsultaFactura/{{ item.pk }}">Editar</a>
               </center>
             </td>
             <td> 
               <center>
                 {% csrf_token %}
-                 <a class="btn btn-danger btn-sm" href="/borrarPuesto/{{ item.pk }}">Borrar</a>
+                 <a class="btn btn-danger btn-sm" href="/borrarConsultaFactura/{{ item.pk }}">Borrar</a>
               </center>
             </td>
 
