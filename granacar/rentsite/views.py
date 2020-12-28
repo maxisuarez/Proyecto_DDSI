@@ -7,47 +7,58 @@ def index(request):
     return render(request,'base.html')
 
 def crearPuesto(request):
+    error=None
     if request.method == 'POST':
         register_form = PuestoForm(request.POST)
         if register_form.is_valid():
-            success = register_form.registrar()
-            return redirect(puestos)
+            register_form.save()
+            return redirect('Puestos')
+        else:
+            error=register_form.errors
     else:
-        nuevoPuesto = PuestoForm()
-        return render(request,'nuevo_puesto.html', {'register_form': nuevoPuesto})
+        register_form = PuestoForm()
+    return render(request,'nuevo_puesto.html', {'form': register_form,'error': error})
 
-def puestos(request):
-    items = Puesto.objects.all()  # Aquí van la las variables para la plantilla
+def Puestos(request):
+    items = Puesto.objects.all()
     return render(request,'lista_puestos.html', {'items': items })
 
 def editarPuesto(request, item_id):
+    error=None
     instancia = Puesto.objects.get(pk=item_id)
-
-    form = PuestoForm(instance=instancia)
-
     if request.method == 'POST':
-        form = Puesto(request.POST, instance=instancia)
+        form = PuestoForm(request.POST, instance=instancia)
         if form.is_valid():
-            instancia = form.save(commit=False)
-            instancia.save()
-        return redirect(puestos)
-
-    return render(request,'editar_puesto.html', {'register_form': form, 'item_id':item_id})
+            form.save()
+            return redirect('Puestos')
+        else:
+            error=form.errors
+    else:
+        form = PuestoForm(instance=instancia)
+    
+    return render(request,'editar_puesto.html', {'form': form, 'item_id':item_id, 'error': error})
 
 def borrarPuesto(request, item_id):
     instance = Puesto.objects.get(pk=item_id)
-    instance.delete()
-    return redirect(puestos)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('Puestos')
+    return render(request,'borrar_Puesto.html',{'instance': instance})
+
 
 def crearEmpleado(request):
+    error=None
     if request.method == 'POST':
         register_form = EmpleadoForm(request.POST)
         if register_form.is_valid():
-            success = register_form.registrar()
-            return redirect(empleados)
+            register_form.save()
+            return redirect('empleados')
+        else:
+            error=register_form.errors
     else:
-        nuevoEmpleado = EmpleadoForm()
-        return render(request,'nuevo_empleado.html', {'register_form': nuevoEmpleado})
+        register_form = EmpleadoForm()
+    return render(request,'nuevo_empleado.html', {'form': register_form,'error': error})
+
 
 def empleados(request):
     items = EmpleadoTrabaja.objects.all()  # Aquí van la las variables para la plantilla
@@ -57,20 +68,26 @@ def editarEmpleado(request, item_id):
     instancia = EmpleadoTrabaja.objects.get(pk=item_id)
 
     form = EmpleadoForm(instance=instancia)
-
+    error=None
     if request.method == 'POST':
         form = EmpleadoForm(request.POST, instance=instancia)
         if form.is_valid():
             instancia = form.save(commit=False)
             instancia.save()
-        return redirect(empleados)
+            return redirect(empleados)
+        else:
+            error=form.errors
 
-    return render(request,'editar_empleado.html', {'register_form': form, 'item_id':item_id})
+    return render(request,'editar_empleado.html', {'register_form': form, 'item_id':item_id, 'error':error})
 
 def borrarEmpleado(request, item_id):
     instance = EmpleadoTrabaja.objects.get(pk=item_id)
-    instance.delete()
-    return redirect(empleados)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('empleados')
+    return render(request,'borrar_Empleado.html',{'instance': instance})
+
+
 
 def crearFactura(request):
     error=None
@@ -439,7 +456,7 @@ def crearContiene(request):
             error=register_form.errors
     else:
         register_form = ContieneForm()
-    return render(request,'nuevo_cambio.html', {'form': register_form,'error': error})
+    return render(request,'nuevo_contiene.html', {'form': register_form,'error': error})
 
 def contiene(request):
     items = Contiene.objects.all()
@@ -466,3 +483,132 @@ def borrarContiene(request, item_id):
         instance.delete()
         return redirect('contiene')
     return render(request,'borrar_contiene.html',{'instance': instance})
+
+def crearBalanceFinanciero(request):
+    error=None
+    if request.method == 'POST':
+        register_form = BalanceFinancieroForm(request.POST)
+        if register_form.is_valid():
+            register_form.save()
+            return redirect('balanaceFinancieros')
+        else:
+            error=register_form.errors
+    else:
+        register_form = BalanceFinancieroForm()
+    return render(request,'nuevo_balanaceFinanciero.html', {'form': register_form,'error': error})
+
+def balanaceFinancieros(request):
+    items = BalanceFinanciero.objects.all().order_by('fecha_realizacion')
+    return render(request,'lista_balanaceFinancieros.html', {'items': items })
+
+def editarBalanceFinanciero(request, item_id):
+    error=None
+    instancia = BalanceFinanciero.objects.get(pk=item_id)
+    if request.method == 'POST':
+        form = BalanceFinancieroForm(request.POST, instance=instancia)
+        if form.is_valid():
+            form.save()
+            return redirect('balanaceFinancieros')
+        else:
+            error=form.errors
+    else:
+        form = BalanceFinancieroForm(instance=instancia)
+    
+    return render(request,'editar_BalanceFinanciero.html', {'form': form, 'item_id':item_id, 'error': error})
+
+def borrarBalanceFinanciero(request, item_id):
+    instance = BalanceFinanciero.objects.get(pk=item_id)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('balanaceFinancieros')
+    return render(request,'borrar_BalanceFinanciero.html',{'instance': instance})
+
+def crearConsultaInformeContable(request):
+    error=None
+    if request.method == 'POST':
+        register_form = ConsultaInformeContableForm(request.POST)
+        if register_form.is_valid():
+            register_form.save()
+            return redirect('ConsultaInformeContables')
+        else:
+            error=register_form.errors
+    else:
+        register_form = ConsultaInformeContableForm()
+    return render(request,'nuevo_ConsultaInformeContable.html', {'form': register_form,'error': error})
+
+def ConsultaInformeContables(request):
+    items = ConsultaInformeContable.objects.all()
+    return render(request,'lista_ConsultaInformeContables.html', {'items': items })
+
+def editarConsultaInformeContable(request, item_id):
+    error=None
+    instancia = ConsultaInformeContable.objects.get(pk=item_id)
+    if request.method == 'POST':
+        form = ConsultaInformeContableForm(request.POST, instance=instancia)
+        if form.is_valid():
+            form.save()
+            return redirect('ConsultaInformeContables')
+        else:
+            error=form.errors
+    else:
+        form = ConsultaInformeContableForm(instance=instancia)
+    
+    return render(request,'editar_ConsultaInformeContable.html', {'form': form, 'item_id':item_id, 'error': error})
+
+def borrarConsultaInformeContable(request, item_id):
+    instance = ConsultaInformeContable.objects.get(pk=item_id)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('ConsultaInformeContables')
+    return render(request,'borrar_ConsultaInformeContable.html',{'instance': instance})
+
+def crearConsultaFactura(request):
+    error=None
+    if request.method == 'POST':
+        register_form = ConsultaFacturaForm(request.POST)
+        if register_form.is_valid():
+            register_form.save()
+            return redirect('ConsultaFacturas')
+        else:
+            error=register_form.errors
+    else:
+        register_form = ConsultaFacturaForm()
+    return render(request,'nuevo_ConsultaFactura.html', {'form': register_form,'error': error})
+
+def ConsultaFacturas(request):
+    items = ConsultaFactura.objects.all()
+    return render(request,'lista_ConsultaFacturas.html', {'items': items })
+
+def editarConsultaFactura(request, item_id):
+    error=None
+    instancia = ConsultaFactura.objects.get(pk=item_id)
+    if request.method == 'POST':
+        form = ConsultaFacturaForm(request.POST, instance=instancia)
+        if form.is_valid():
+            form.save()
+            return redirect('ConsultaFacturas')
+        else:
+            error=form.errors
+    else:
+        form = ConsultaFacturaForm(instance=instancia)
+    
+    return render(request,'editar_ConsultaFactura.html', {'form': form, 'item_id':item_id, 'error': error})
+
+def borrarConsultaFactura(request, item_id):
+    instance = ConsultaFactura.objects.get(pk=item_id)
+    if request.method=='POST':
+        instance.delete()
+        return redirect('ConsultaFacturas')
+    return render(request,'borrar_ConsultaFactura.html',{'instance': instance})
+
+
+    
+
+
+
+
+    
+
+
+    
+

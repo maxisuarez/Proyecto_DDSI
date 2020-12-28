@@ -7,25 +7,15 @@ from .models import *
 class PuestoForm(ModelForm):
     class Meta:
         model = Puesto
-        fields = ['nombre_puesto', 'departamento', 'numero_de_vacantes', 'aptitudes_necesarias', 'requisitos_puesto', 'sueldo']
-
-    def registrar(self):
-        nuevo_item = Puesto(nombre_puesto=self.data['nombre_puesto'],
-                        departamento=self.data['departamento'],
-                        numero_de_vacantes=int(self.data['numero_de_vacantes']),
-                        aptitudes_necesarias=self.data['aptitudes_necesarias'],
-                        requisitos_puesto=self.data['requisitos_puesto'],
-                        sueldo=self.data['sueldo'])
-        nuevo_item.save()
-        return 'Registro exitoso'
+        fields = '__all__'
 
 
 class EmpleadoForm(ModelForm):
     class Meta:
         model = EmpleadoTrabaja
-        fields = ['idEmpleado', 'nombre', 'apellidos', 'nombre_puesto', 'cuenta_bancaria', 'fecha_pago', 'fecha_alta', 'fecha_baja']
+        fields = '__all__'
 
-
+'''
     fecha_pago = forms.DateField(widget=forms.SelectDateWidget(years=range(2000,2021)))
     fecha_alta = forms.DateField(widget=forms.SelectDateWidget(years=range(2000,2021)))
     fecha_baja = forms.DateField(widget=forms.SelectDateWidget(years=range(2000,2021)))
@@ -50,7 +40,7 @@ class EmpleadoForm(ModelForm):
                         fecha_baja = fechaBaja)
         nuevo_empleado.save()
         return 'Registro exitoso'
-
+'''
 
 
 class FacturaForm(ModelForm):
@@ -87,4 +77,40 @@ class ProductoForm(ModelForm):
 class ContieneForm(ModelForm):
     class Meta:
         model = Contiene
+        fields = '__all__'
+
+
+class ConsultaEmpleadoForm(ModelForm):
+    class Meta:
+        model = ConsultaEmpleado
+        fields = '__all__'
+
+class ClienteForm(ModelForm):
+    class Meta:
+        model = Cliente
+        fields = '__all__'
+
+class SolicitaAlquilerForm(ModelForm):
+    class Meta:
+        model = Cliente
+        fields = '__all__'
+
+class ConsultaAlquilerForm(ModelForm):
+    class Meta:
+        model = Cliente
+        fields = '__all__'
+
+class BalanceFinancieroForm(ModelForm):
+    class Meta:
+        model = BalanceFinanciero
+        fields = '__all__'
+
+class ConsultaInformeContableForm(ModelForm):
+    class Meta:
+        model = ConsultaInformeContable
+        fields = '__all__'
+
+class ConsultaFacturaForm(ModelForm):
+    class Meta:
+        model = ConsultaFactura
         fields = '__all__'
