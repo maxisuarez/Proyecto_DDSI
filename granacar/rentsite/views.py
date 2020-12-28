@@ -458,11 +458,11 @@ def editarContiene(request, item_id):
     else:
         form = ContieneForm(instance=instancia)
 
-    return render(request,'editar_Contiene.html', {'form': form, 'item_id':item_id, 'error': error})
+    return render(request,'editar_contiene.html', {'form': form, 'item_id':item_id, 'error': error})
 
 def borrarContiene(request, item_id):
     instance = Contiene.objects.get(pk=item_id)
     if request.method=='POST':
         instance.delete()
         return redirect('contiene')
-    return render(request,'borrar_Contiene.html',{'instance': instance})
+    return render(request,'borrar_contiene.html',{'instance': instance})
