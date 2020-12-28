@@ -246,7 +246,7 @@ def crearProducto(request):
     return render(request,'nuevo_producto.html', {'form': register_form,'error': error})
 
 def productos(request):
-    items = Producto.objects.all().order_by('fecha')
+    items = Producto.objects.all()
     return render(request,'lista_productos.html', {'items': items })
 
 def editarProducto(request, item_id):
