@@ -134,6 +134,10 @@ class ConsultaAlquiler(models.Model):
   idBalance = models.ForeignKey(BalanceFinanciero, on_delete=models.CASCADE) 
 
 
+class Contiene(models.Model):
+    alquiler = models.ForeignKey(SolicitaAlquiler, primary_key=True, on_delete=models.CASCADE)
+    vehiculo = models.ForeignKey(Vehiculo, on_delete=models.CASCADE)
+
 
 """
 class ConsultaEmpleado(models.Model):
@@ -151,9 +155,6 @@ class ConsultaInformeContable(models.Model):
             unique_together = (('informe', 'balance'),)
 
 
-class Contiene(models.Model):
-    alquiler = models.ForeignKey(SolicitaAlquiler, primary_key=True)
-    vehiculo = models.ForeignKey(Vehiculo)
 
 class ConsultaFactura(models.Model):
     balanceFinaciero = models.ForeignKey(BalanceFinanciero, primary_key=True)
