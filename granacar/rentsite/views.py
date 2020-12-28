@@ -206,7 +206,7 @@ def crearVehiculo(request):
     return render(request,'nuevo_vehiculo.html', {'form': register_form,'error': error})
 
 def vehiculos(request):
-    items = Vehiculo.objects.all().order_by('fecha')
+    items = Vehiculo.objects.all()
     return render(request,'lista_vehiculos.html', {'items': items })
 
 def editarVehiculo(request, item_id):
@@ -364,7 +364,7 @@ def crearConsultaAlquiler(request):
     return render(request,'nuevo_ConsultaAlquiler.html', {'form': register_form,'error': error})
 
 def ConsultaAlquileres(request):
-    items = ConsultaAlquiler.objects.all().order_by('fecha')
+    items = ConsultaAlquiler.objects.all()
     return render(request,'lista_ConsultaAlquiler.html', {'items': items })
 
 def editarConsultaAlquiler(request, item_id):
@@ -442,7 +442,7 @@ def crearContiene(request):
     return render(request,'nuevo_cambio.html', {'form': register_form,'error': error})
 
 def contiene(request):
-    items = Contiene.objects.all().order_by('fecha')
+    items = Contiene.objects.all()
     return render(request,'lista_contiene.html', {'items': items })
 
 def editarContiene(request, item_id):
