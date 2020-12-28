@@ -2,6 +2,7 @@
 
 from django.shortcuts import render, HttpResponse, redirect
 from .forms import *
+from .filters import *
 
 def index(request):
     return render(request,'base.html')
@@ -21,7 +22,11 @@ def crearPuesto(request):
 
 def Puestos(request):
     items = Puesto.objects.all()
-    return render(request,'lista_puestos.html', {'items': items })
+
+    myFilter = PuestoFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_puestos.html', {'items': items, 'myFilter':myFilter})
 
 def editarPuesto(request, item_id):
     error=None
@@ -61,8 +66,12 @@ def crearEmpleado(request):
 
 
 def empleados(request):
-    items = EmpleadoTrabaja.objects.all()  # Aquí van la las variables para la plantilla
-    return render(request,'lista_empleados.html', {'items': items })
+    items = EmpleadoTrabaja.objects.all() 
+    myFilter = EmpleadoTrabajaFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_empleados.html', {'items': items, 'myFilter':myFilter}) # Aquí van la las variables para la plantilla
+
 
 def editarEmpleado(request, item_id):
     instancia = EmpleadoTrabaja.objects.get(pk=item_id)
@@ -104,7 +113,11 @@ def crearFactura(request):
 
 def facturas(request):
     items = Factura.objects.all().order_by('fecha')
-    return render(request,'lista_facturas.html', {'items': items })
+    myFilter = FacturaFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_facturas.html', {'items': items, 'myFilter':myFilter})
+
 
 def editarFactura(request, item_id):
     error=None
@@ -144,7 +157,11 @@ def crearBien(request):
 
 def bienes(request):
     items = Bien.objects.all().order_by('nombre')
-    return render(request,'lista_bienes.html', {'items': items })
+    myFilter = BienFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_bienes.html', {'items': items, 'myFilter':myFilter})
+
 
 def editarBien(request, item_id):
     error=None
@@ -184,7 +201,11 @@ def crearInforme(request):
 
 def informes(request):
     items = InformeContable.objects.all().order_by('fecha')
-    return render(request,'lista_informes.html', {'items': items })
+    myFilter = InformeContableFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_informes.html', {'items': items, 'myFilter':myFilter})
+
 
 def editarInforme(request, item_id):
     error=None
@@ -224,7 +245,11 @@ def crearVehiculo(request):
 
 def vehiculos(request):
     items = Vehiculo.objects.all()
-    return render(request,'lista_vehiculos.html', {'items': items })
+    myFilter = VehiculoFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_vehiculos.html', {'items': items, 'myFilter':myFilter})
+
 
 def editarVehiculo(request, item_id):
     error=None
@@ -264,7 +289,11 @@ def crearProducto(request):
 
 def productos(request):
     items = Producto.objects.all()
-    return render(request,'lista_productos.html', {'items': items })
+    myFilter = ProductoFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_productos.html', {'items': items, 'myFilter':myFilter})
+
 
 def editarProducto(request, item_id):
     error=None
@@ -304,7 +333,10 @@ def crearConsultaEmpleado(request):
 
 def ConsultaEmpleados(request):
     items = ConsultaEmpleado.objects.all()
-    return render(request,'lista_ConsultaEmpleado.html', {'items': items })
+    myFilter = ConsultaEmpleadoFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_ConsultaEmpleado.html', {'items': items, 'myFilter':myFilter})
 
 def editarConsultaEmpleado(request, item_id):
     error=None
@@ -343,7 +375,10 @@ def crearCliente(request):
 
 def Clientes(request):
     items = Cliente.objects.all()
-    return render(request,'lista_Clientes.html', {'items': items })
+    myFilter = ClienteFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_Clientes.html', {'items': items, 'myFilter':myFilter})
 
 def editarCliente(request, item_id):
     error=None
@@ -382,7 +417,10 @@ def crearConsultaAlquiler(request):
 
 def ConsultaAlquileres(request):
     items = ConsultaAlquiler.objects.all()
-    return render(request,'lista_ConsultaAlquiler.html', {'items': items })
+    myFilter = ConsultaAlquilerFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_ConsultaAlquiler.html', {'items': items, 'myFilter':myFilter})
 
 def editarConsultaAlquiler(request, item_id):
     error=None
@@ -421,7 +459,11 @@ def crearSolicitaAlquiler(request):
 
 def SolicitaAlquileres(request):
     items = SolicitaAlquiler.objects.all()
-    return render(request,'lista_SolicitaAlquiler.html', {'items': items })
+    myFilter = SolicitaAlquilerFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_SolicitaAlquiler.html', {'items': items, 'myFilter':myFilter})
+
 
 def editarSolicitaAlquiler(request, item_id):
     error=None
@@ -460,7 +502,10 @@ def crearContiene(request):
 
 def contiene(request):
     items = Contiene.objects.all()
-    return render(request,'lista_contiene.html', {'items': items })
+    myFilter = ContieneFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_contiene.html', {'items': items, 'myFilter':myFilter})
 
 def editarContiene(request, item_id):
     error=None
@@ -499,7 +544,10 @@ def crearBalanceFinanciero(request):
 
 def balanaceFinancieros(request):
     items = BalanceFinanciero.objects.all().order_by('fecha_realizacion')
-    return render(request,'lista_balanaceFinancieros.html', {'items': items })
+    myFilter = BalanceFinancieroFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_balanaceFinancieros.html', {'items': items, 'myFilter':myFilter})
 
 def editarBalanceFinanciero(request, item_id):
     error=None
@@ -538,7 +586,10 @@ def crearConsultaInformeContable(request):
 
 def ConsultaInformeContables(request):
     items = ConsultaInformeContable.objects.all()
-    return render(request,'lista_ConsultaInformeContables.html', {'items': items })
+    myFilter = ConsultaInformeContableFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_ConsultaInformeContables.html', {'items': items, 'myFilter':myFilter})
 
 def editarConsultaInformeContable(request, item_id):
     error=None
@@ -577,7 +628,11 @@ def crearConsultaFactura(request):
 
 def ConsultaFacturas(request):
     items = ConsultaFactura.objects.all()
-    return render(request,'lista_ConsultaFacturas.html', {'items': items })
+    myFilter = ConsultaFacturaFilter(request.GET,queryset=items)
+    items = myFilter.qs 
+
+    return render(request,'lista_ConsultaFacturas.html', {'items': items, 'myFilter':myFilter})
+
 
 def editarConsultaFactura(request, item_id):
     error=None

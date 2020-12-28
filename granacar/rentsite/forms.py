@@ -97,7 +97,7 @@ class SolicitaAlquilerForm(ModelForm):
 
 class ConsultaAlquilerForm(ModelForm):
     class Meta:
-        model = Cliente
+        model = ConsultaAlquiler
         fields = '__all__'
 
 class BalanceFinancieroForm(ModelForm):

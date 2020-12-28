@@ -9,6 +9,20 @@
     <h1>Lista de Puestos</h1>
       <a class="btn btn-success btn-lg" href="crearPuesto">Añadir Puesto</a>
       <br>
+      <div class="row">
+      <div class="col">
+        <div class="card card-body">
+
+          <form method="get">
+            {{myFilter.form}}
+
+            <button class="btn btn-primary" type="submit">Buscar</button>
+          </form>
+
+        </div>
+      </div>
+	
+    </div>
       <br>
       <table  class="table table-striped table-bordered">
         <thead class="thead-dark">
