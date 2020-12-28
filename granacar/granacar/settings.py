@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rentsite',
     'crispy_forms',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
