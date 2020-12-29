@@ -6,6 +6,12 @@
 {%block formulario %}
 
 <body>
+  {% if error %}
+  <br>
+  <div class="alert alert-danger" role="alert">
+    <p class=error><strong>Error:</strong> {{ error }}
+  </div> {% endif %}
+
   <div class="container text-center pt-5">
     <h1>Editar empleado</h1>
     <p>Introduce la información del empleado</p>

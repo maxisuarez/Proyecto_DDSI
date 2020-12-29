@@ -4,12 +4,16 @@
 
 {% load crispy_forms_tags %}
 {%block formulario %}
+
+
+<body>
 {% if error %}
+<br>
 <div class="alert alert-danger" role="alert">
     <p class=error><strong>Error:</strong> {{ error }}
 </div> {% endif %}
 
-<body>
+
   <div class="container text-center pt-5">
     <h1>Editar información ConsultaInformeContable</h1>
     <p>Introduce la información del ConsultaInformeContable</p>

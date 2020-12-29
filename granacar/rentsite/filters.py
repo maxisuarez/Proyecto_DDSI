@@ -61,7 +61,7 @@ class BalanceFinancieroFilter(django_filters.FilterSet):
 class ConsultaInformeContableFilter(django_filters.FilterSet):
     class Meta:
         model = ConsultaInformeContable
-        fields = '__all__'
+        fields = ['informe', 'balance']
 
 class ConsultaFacturaFilter(django_filters.FilterSet):
     class Meta:

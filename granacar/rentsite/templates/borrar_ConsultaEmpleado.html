@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {%block title %} ConsultaEmpleado {% endblock %} {% block formulario %}
 
-<form action="{% url 'borrarCambiar' instance.pk %}" method="POST" class="my-5">{% csrf_token %}
+<form action="{% url 'borrarConsultaEmpleado' instance.pk %}" method="POST" class="my-5">{% csrf_token %}
     <div class="container-fluid">
         <p> ¿Estás seguro que quieres eliminar el Consulta Informe Contable <b><b>{{ instance }}</b></b>? </p>
         <div class="row mb-2">
@@ -9,7 +9,7 @@
             </div>
 
             <div class="col-md-auto my-2">
-                <a class="btn btn btn-dark text-center " href="{% url 'ConsultaEmpleado' %} ">Cancelar</a>
+                <a class="btn btn btn-dark text-center " href="{% url 'ConsultaEmpleados' %} ">Cancelar</a>
             </div>
         </div>
     </div>

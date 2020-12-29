@@ -324,7 +324,7 @@ def crearConsultaEmpleado(request):
         register_form = ConsultaEmpleadoForm(request.POST)
         if register_form.is_valid():
             register_form.save()
-            return redirect('ConsultaEmpleado')
+            return redirect('ConsultaEmpleados')
         else:
             error=register_form.errors
     else:
@@ -484,7 +484,7 @@ def borrarSolicitaAlquiler(request, item_id):
     instance = SolicitaAlquiler.objects.get(pk=item_id)
     if request.method=='POST':
         instance.delete()
-        return redirect('SolicitaAlquiler')
+        return redirect('SolicitaAlquileres')
     return render(request,'borrar_SolicitaAlquiler.html',{'instance': instance})
 
 def crearContiene(request):

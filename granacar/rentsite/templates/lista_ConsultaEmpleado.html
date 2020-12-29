@@ -29,12 +29,14 @@
           <tr>
             <th>idBalance</th>
             <th>idEmpleado</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead><tbody>
           {% for item in items %}
           <tr>
-            <td>{{ item.idBalance }}</td>
-            <td>{{ item.idEmpleado }}</td>
+            <td>{{ item.balance }}</td>
+            <td>{{ item.empleado }}</td>
             <td> 
               <center>
                  {% csrf_token %}

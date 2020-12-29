@@ -145,7 +145,7 @@ class SolicitaAlquiler(models.Model):
   cliente =  models.ForeignKey(Cliente, on_delete=models.CASCADE,default=None)
 
   def __str__(self):
-    return self.idAlquiler + " alquilado por " + self.cliente
+    return self.idAlquiler + " alquilado por " + self.cliente.dni
 
 class ConsultaAlquiler(models.Model):
   class Meta:
@@ -154,7 +154,7 @@ class ConsultaAlquiler(models.Model):
   idBalance = models.ForeignKey(BalanceFinanciero, on_delete=models.CASCADE) 
 
   def __str__(self):
-    return "idAlquiler " + self.idAlquiler + " idBalance " + self.idBalance
+    return "idAlquiler " + self.idAlquiler.idAlquiler + " idBalance " + self.idBalance.idBalance
 
 
 class Contiene(models.Model):
@@ -162,7 +162,7 @@ class Contiene(models.Model):
     vehiculo = models.ForeignKey(Vehiculo, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Alquiler " + self.alquiler + " con vehiculo " + self.vehiculo
+        return "Alquiler " + self.alquiler.idAlquiler + " con vehiculo " + self.vehiculo.matricula
 
 
 
@@ -173,7 +173,7 @@ class ConsultaEmpleado(models.Model):
   empleado = models.ForeignKey(EmpleadoTrabaja, on_delete=models.CASCADE)
 
   def __str__(self):
-    return "balance " + self.balance + " con empleado " + self.empleado
+    return "balance " + self.balance.idBalance + " con empleado " + self.empleado.idEmpleado
 
 
 class ConsultaInformeContable(models.Model):
@@ -184,14 +184,14 @@ class ConsultaInformeContable(models.Model):
       unique_together = (('informe', 'balance'),)
 
     def __str__(self):
-        return "Informe"  + self.informe + " con balance " + self.balance
+        return "Informe"  + self.informe.id + " con balance " + self.balance.idBalance
 
 class ConsultaFactura(models.Model):
     balanceFinanciero = models.ForeignKey(BalanceFinanciero, on_delete=models.CASCADE)
     factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
 
     def __str__(self):
-      return "BalanceFinanciero " + self.balanceFinanciero + " con factura " + self.factura
+      return "BalanceFinanciero " + self.balanceFinanciero.idBalance + " con factura " + self.factura.id
 
     class Meta:
       verbose_name_plural ="consultas facturas"

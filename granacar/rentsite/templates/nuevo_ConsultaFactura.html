@@ -1,9 +1,13 @@
-{%extends "base.html" %} {%block title %} consulta facturas {% endblock %} {% load crispy_forms_tags %} {%block formulario %} {% if error %}
+{%extends "base.html" %} {%block title %} consulta facturas 
+{% endblock %} {% load crispy_forms_tags %} {%block formulario %} 
+
+<body>
+{% if error %}
+<br>
 <div class="alert alert-danger" role="alert">
     <p class=error><strong>Error:</strong> {{ error }}
 </div> {% endif %}
 
-<body>
     <div class="container text-center pt-5">
         <h1>Registro nueva Consulta de Factura</h1>
         <p>Introduce la información de la Consulta de Factura</p>

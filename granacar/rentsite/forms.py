@@ -108,7 +108,7 @@ class BalanceFinancieroForm(ModelForm):
 class ConsultaInformeContableForm(ModelForm):
     class Meta:
         model = ConsultaInformeContable
-        fields = '__all__'
+        fields = ['informe', 'balance']
 
 class ConsultaFacturaForm(ModelForm):
     class Meta:
