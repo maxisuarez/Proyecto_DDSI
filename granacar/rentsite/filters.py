@@ -45,7 +45,7 @@ class ClienteFilter(django_filters.FilterSet):
 
 class SolicitaAlquilerFilter(django_filters.FilterSet):
     class Meta:
-        model = Cliente
+        model = SolicitaAlquiler
         fields = '__all__'
 
 class ConsultaAlquilerFilter(django_filters.FilterSet):

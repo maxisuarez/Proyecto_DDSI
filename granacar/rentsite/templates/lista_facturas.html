@@ -5,64 +5,64 @@
     <a class="btn btn-success btn-lg" href="crearFactura">Añadir factura</a>
     <br>
     <br>
-                <div class="row">
-      <div class="col">
-        <div class="card card-body">
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
 
-          <form method="get">
-            {{myFilter.form}}
+                <form method="get">
+                    {{myFilter.form}}
 
-            <button class="btn btn-primary" type="submit">Buscar</button>
-          </form>
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </form>
 
+            </div>
         </div>
-      </div>
-      <br>
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Fecha</th>
-                <th>Proveedor</th>
-                <th>Precio total (en €)</th>
-                <th>Productos</th>
-                <th></th>
-                <th></th>
+        <br>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Proveedor</th>
+                    <th>Precio total (en €)</th>
+                    <th>Productos</th>
+                    <th></th>
+                    <th></th>
 
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-            <tr>
-                <td>{{ item.id }}</td>
-                <td>{{ item.fecha }}</td>
-                {% if item.proveedor %}
-                <td>{{ item.proveedor }}</td>
-                {% else %}
-                <td></td>
-                {% endif %}
-                <td>{{ item.total }}</td>
-                <td>{% for i in item.factura_set.all %} {{ i }}
-                    <br/>----------<br/>{% endfor %}
-                </td>
-                <td>
-                    <center>
-                        {% csrf_token %}
-                        <a class="btn btn-info btn-sm" href="/editarFactura/{{ item.pk }}">Editar</a>
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        {% csrf_token %}
-                        <a class="btn btn-danger btn-sm" href="/borrarFactura/{{ item.pk }}">Borrar</a>
-                    </center>
-                </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.fecha }}</td>
+                    {% if item.proveedor %}
+                    <td>{{ item.proveedor }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td>{{ item.total }}</td>
+                    <td>{% for i in item.producto_set.all %} {{ i }}
+                        <br/>----------<br/>{% endfor %}
+                    </td>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-info btn-sm" href="/editarFactura/{{ item.pk }}">Editar</a>
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-danger btn-sm" href="/borrarFactura/{{ item.pk }}">Borrar</a>
+                        </center>
+                    </td>
 
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

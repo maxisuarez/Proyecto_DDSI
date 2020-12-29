@@ -1,60 +1,57 @@
-{%extends "base.html" %}
-
-{%block title %} Clientes {% endblock %}
-
-{%block titulo %}  {% endblock %}
-{%block contenido %}
+{%extends "base.html" %} {%block title %} Clientes {% endblock %} {%block titulo %} {% endblock %} {%block contenido %}
 
 <div class="container text-center pt-5">
     <h1>Lista de Clientes</h1>
-      <a class="btn btn-success btn-lg" href="crearCliente">Añadir Cliente</a>
-      <br>
-      <br>
-            <div class="row">
-      <div class="col">
-        <div class="card card-body">
+    <a class="btn btn-success btn-lg" href="crearCliente">Añadir Cliente</a>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
 
-          <form method="get">
-            {{myFilter.form}}
+                <form method="get">
+                    {{myFilter.form}}
 
-            <button class="btn btn-primary" type="submit">Buscar</button>
-          </form>
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </form>
 
+            </div>
         </div>
-      </div>
-      <br>
-      <table  class="table table-striped table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th>DNI</th>
-            <th>NombreCliente</th>
-           
-          </tr>
-        </thead><tbody>
-          {% for item in items %}
-          <tr>
-            <td>{{ item.dni}}</td>
-            <td>{{ item.nombrecliente }}</td>
-           
-            <td> 
-              <center>
-                 {% csrf_token %}
-                  <a class="btn btn-info btn-sm" href="/editarCliente/{{ item.pk }}">Editar</a>
-              </center>
-            </td>
-            <td> 
-              <center>
-                {% csrf_token %}
-                 <a class="btn btn-danger btn-sm" href="/borrarCliente/{{ item.pk }}">Borrar</a>
-              </center>
-            </td>
+        <br>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombre del Cliente</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.dni}}</td>
+                    <td>{{ item.nombrecliente }}</td>
 
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-info btn-sm" href="/editarCliente/{{ item.pk }}">Editar</a>
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-danger btn-sm" href="/borrarCliente/{{ item.pk }}">Borrar</a>
+                        </center>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
 
 
 {% endblock %}

@@ -1,68 +1,58 @@
-{%extends "base.html" %}
-
-{%block title %} Consulta faturas {% endblock %}
-
-{%block titulo %}  {% endblock %}
-{%block contenido %}
+{%extends "base.html" %} {%block title %} Consulta faturas {% endblock %} {%block titulo %} {% endblock %} {%block contenido %}
 
 <div class="container text-center pt-5">
     <h1>Lista de ConsultaFacturas</h1>
-      <a class="btn btn-success btn-lg" href="crearConsultaFactura">Añadir ConsultaFactura</a>
-      <br>
-      <br>
-      <div class="row">
-      <div class="col">
-        <div class="card card-body">
+    <a class="btn btn-success btn-lg" href="crearConsultaFactura">Añadir ConsultaFactura</a>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
 
-          <form method="get">
-            {{myFilter.form}}
+                <form method="get">
+                    {{myFilter.form}}
 
-            <button class="btn btn-primary" type="submit">Buscar</button>
-          </form>
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </form>
 
+            </div>
         </div>
-      </div>
-      <br>
-      <table  class="table table-striped table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th>Nombre</th>
-            <th>Departamento</th>
-            <th>Nº Vacantes</th>
-            <th>Aptitudes</th>
-            <th>Requisitos</th>
-            <th>Sueldo</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead><tbody>
-          {% for item in items %}
-          <tr>
-            <td>{{ item.nombre_ConsultaFactura }}</td>
-            <td>{{ item.departamento }}</td>
-            <td>{{ item.numero_de_vacantes }}</td>
-            <td>{{ item.aptitudes_necesarias }}</td>
-            <td>{{ item.requisitos_ConsultaFactura }}</td>
-            <td>{{ item.sueldo }}</td>
-            <td> 
-              <center>
-                 {% csrf_token %}
-                  <a class="btn btn-info btn-sm" href="/editarConsultaFactura/{{ item.pk }}">Editar</a>
-              </center>
-            </td>
-            <td> 
-              <center>
-                {% csrf_token %}
-                 <a class="btn btn-danger btn-sm" href="/borrarConsultaFactura/{{ item.pk }}">Borrar</a>
-              </center>
-            </td>
+        <br>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Balance Financiero</th>
+                    <th>Factura</th>
 
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.balanceFinanciero }}</td>
+                    <td>{{ item.factura }}</td>
+
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-info btn-sm" href="/editarConsultaFactura/{{ item.pk }}">Editar</a>
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-danger btn-sm" href="/borrarConsultaFactura/{{ item.pk }}">Borrar</a>
+                        </center>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
 
 
 {% endblock %}

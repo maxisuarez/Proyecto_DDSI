@@ -1,61 +1,57 @@
-{%extends "base.html" %}
-
-{%block title %} Consulta Informe Contables {% endblock %}
-
-{%block titulo %}  {% endblock %}
-{%block contenido %}
+{%extends "base.html" %} {%block title %} Consulta Informes Contables {% endblock %} {%block titulo %} {% endblock %} {%block contenido %}
 
 <div class="container text-center pt-5">
-    <h1>Lista de ConsultaInformeContables</h1>
-      <a class="btn btn-success btn-lg" href="crearConsultaInformeContable">Añadir ConsultaInformeContable</a>
-      <br>
-      <br>
-        <div class="row">
-      <div class="col">
-        <div class="card card-body">
+    <h1>Lista de ConsultasInformesContables</h1>
+    <a class="btn btn-success btn-lg" href="crearConsultaInformeContable">Añadir ConsultaInformeContable</a>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
 
-          <form method="get">
-            {{myFilter.form}}
+                <form method="get">
+                    {{myFilter.form}}
 
-            <button class="btn btn-primary" type="submit">Buscar</button>
-          </form>
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </form>
 
+            </div>
         </div>
-      </div>
-      <br>
+        <br>
 
-      <table  class="table table-striped table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th>Informe</th>
-            <th>Balance</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead><tbody>
-          {% for item in items %}
-          <tr>
-            <td>{{ item.informe }}</td>
-            <td>{{ item.balance }}</td>
-            <td> 
-              <center>
-                 {% csrf_token %}
-                  <a class="btn btn-info btn-sm" href="/editarConsultaInformeContable/{{ item.pk }}">Editar</a>
-              </center>
-            </td>
-            <td> 
-              <center>
-                {% csrf_token %}
-                 <a class="btn btn-danger btn-sm" href="/borrarConsultaInformeContable/{{ item.pk }}">Borrar</a>
-              </center>
-            </td>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Informe</th>
+                    <th>Balance Financiero</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.informe }}</td>
+                    <td>{{ item.balance }}</td>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-info btn-sm" href="/editarConsultaInformeContable/{{ item.pk }}">Editar</a>
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-danger btn-sm" href="/borrarConsultaInformeContable/{{ item.pk }}">Borrar</a>
+                        </center>
+                    </td>
 
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
 
 
 {% endblock %}

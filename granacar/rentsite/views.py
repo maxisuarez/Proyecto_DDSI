@@ -201,7 +201,7 @@ def crearInforme(request):
 
 def informes(request):
     items = InformeContable.objects.all().order_by('fecha')
-    myFilter = InformeContableFilter(request.GET,queryset=items)
+    myFilter = InformeFilter(request.GET,queryset=items)
     items = myFilter.qs 
 
     return render(request,'lista_informes.html', {'items': items, 'myFilter':myFilter})
@@ -264,14 +264,14 @@ def editarVehiculo(request, item_id):
     else:
         form = VehiculoForm(instance=instancia)
 
-    return render(request,'editar_Vehiculo.html', {'form': form, 'item_id':item_id, 'error': error})
+    return render(request,'editar_vehiculo.html', {'form': form, 'item_id':item_id, 'error': error})
 
 def borrarVehiculo(request, item_id):
     instance = Vehiculo.objects.get(pk=item_id)
     if request.method=='POST':
         instance.delete()
         return redirect('vehiculos')
-    return render(request,'borrar_Vehiculo.html',{'instance': instance})
+    return render(request,'borrar_vehiculo.html',{'instance': instance})
 
 
 def crearProducto(request):
@@ -308,14 +308,14 @@ def editarProducto(request, item_id):
     else:
         form = ProductoForm(instance=instancia)
 
-    return render(request,'editar_Producto.html', {'form': form, 'item_id':item_id, 'error': error})
+    return render(request,'editar_producto.html', {'form': form, 'item_id':item_id, 'error': error})
 
 def borrarProducto(request, item_id):
     instance = Producto.objects.get(pk=item_id)
     if request.method=='POST':
         instance.delete()
         return redirect('productos')
-    return render(request,'borrar_Producto.html',{'instance': instance})
+    return render(request,'borrar_producto.html',{'instance': instance})
 
 
 def crearConsultaEmpleado(request):
