@@ -12,7 +12,16 @@
             <div class="card card-body">
 
                 <form method="get">
-                    {{myFilter.form}}
+                              <table><tr>
+          {% for field in myFilter.form %}
+                    <td>{{ field.label }}</td> <td> {{ field }}</td> <td> &nbsp&nbsp&nbsp&nbsp  </td>
+                    {% if forloop.counter|divisibleby:"2" %}
+                        </tr><tr>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+          </table>
+          <br>
 
                     <button class="btn btn-primary" type="submit">Buscar</button>
                 </form>
