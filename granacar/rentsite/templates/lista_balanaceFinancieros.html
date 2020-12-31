@@ -1,7 +1,7 @@
-{%extends "base.html" %} {%block title %} Consulta Informe Contables {% endblock %} {%block contenido %}
+{%extends "base.html" %} {%block title %} Balances {% endblock %} {%block contenido %}
 
 <div class="container text-center pt-5">
-    <h1>Lista de balanace financieros</h1>
+    <h1>Lista de balances financieros</h1>
     <a class="btn btn-success btn-lg" href="crearBalanceFinanciero">Añadir balance financiero</a>
     <br>
     <br>
@@ -10,16 +10,19 @@
             <div class="card card-body">
 
                 <form method="get">
-                              <table><tr>
-          {% for field in myFilter.form %}
-                    <td>{{ field.label }}</td> <td> {{ field }}</td> <td> &nbsp&nbsp&nbsp&nbsp  </td>
-                    {% if forloop.counter|divisibleby:"2" %}
-                        </tr><tr>
-                    {% endif %}
-                {% endfor %}
-            </tr>
-          </table>
-          <br>
+                    <table>
+                        <tr>
+                            {% for field in myFilter.form %}
+                            <td>{{ field.label }}</td>
+                            <td> {{ field }}</td>
+                            <td> &nbsp&nbsp&nbsp&nbsp </td>
+                            {% if forloop.counter|divisibleby:"2" %}
+                        </tr>
+                        <tr>
+                            {% endif %} {% endfor %}
+                        </tr>
+                    </table>
+                    <br>
 
                     <button class="btn btn-primary" type="submit">Buscar</button>
                 </form>
