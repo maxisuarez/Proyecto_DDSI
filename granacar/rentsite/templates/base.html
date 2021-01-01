@@ -28,7 +28,7 @@
                     <li class="nav-item">
                         <!--<a class="nav-link" href='#'>Adivina</a>-->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="{% url 'index' %}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Recursos humanos
 						</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -90,7 +90,7 @@
     <div class="container" id="contenido">
         <!--<h1 class="">{% block titulo %}{% endblock %}</h1>-->
         <div class="align-items-center justify-content-center text-center">{% block contenido %}{% endblock %}</div>
-        <div class="formulario">{% block formulario %}{% endblock %}</div>
+        <div class="formulario">{% block formulario %}<br>{% endblock %}</div>
     </div>
     </div>
     </div>
