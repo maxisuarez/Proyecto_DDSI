@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {%block title %} ConsultaEmpleado {% endblock %} {% block formulario %}<br>
+<br>
 
 <form action="{% url 'borrarConsultaEmpleado' instance.pk %}" method="POST" class="my-5">{% csrf_token %}
     <div class="container-fluid">

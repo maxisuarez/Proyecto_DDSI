@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {%block title %} Facturas {% endblock %} {% block formulario %}<br>
+<br>
 
 <form action="{% url 'borrarFactura' instance.pk %}" method="POST" class="my-5">{% csrf_token %}
     <div class="container-fluid">

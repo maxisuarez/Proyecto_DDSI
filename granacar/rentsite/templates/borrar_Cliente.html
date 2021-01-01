@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {%block title %} Clientes {% endblock %} {% block formulario %}<br>
+<br>
 
 <form action="{% url 'borrarCliente' instance.pk %}" method="POST" class="my-5">{% csrf_token %}
     <div class="container-fluid">
