@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {%block title %} Informes {% endblock %} {% block formulario %}<br>
+{% extends 'base.html' %} {%block title %} Informes {% endblock %} {%block formulario %}
 <br>
 
 <form action="{% url 'borrarInforme' instance.pk %}" method="POST" class="my-5">{% csrf_token %}

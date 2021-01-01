@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {%block title %} SolicitaAlquileres {% endblock %} {% block formulario %}<br>
+{% extends 'base.html' %} {%block title %} SolicitaAlquileres {% endblock %} {%block formulario %}
 <br>
 
 <form action="{% url 'borrarSolicitaAlquiler' instance.pk %}" method="POST" class="my-5">{% csrf_token %}
