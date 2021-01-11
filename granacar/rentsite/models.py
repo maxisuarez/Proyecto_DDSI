@@ -15,7 +15,7 @@ class Puesto(models.Model):
       return self.nombre_puesto + " del departamento " + self.departamento
 
 class Factura(models.Model):
-    id=models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("\bF[0-9][0-9][0-9][0-9]\b", "El ID debe tener un formato FXXXX con X un número.")])
+    id=models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("F[0-9][0-9][0-9][0-9]", "El ID debe tener un formato FXXXX con X un número.")])
     fecha=models.DateField()
     proveedor=models.CharField(max_length=50,blank=True,null=True)
     total=models.DecimalField("Precio total",max_digits=5,decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))])
@@ -25,7 +25,7 @@ class Factura(models.Model):
 
 
 class InformeContable(models.Model):
-    id=models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("\bI[0-9][0-9][0-9][0-9]\b", "El ID debe tener un formato IXXXX con X un número.")])
+    id=models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("I[0-9][0-9][0-9][0-9]", "El ID debe tener un formato IXXXX con X un número.")])
     fecha=models.DateField("Fecha de realización del informe")
 
     def __str__(self):
@@ -35,7 +35,7 @@ class InformeContable(models.Model):
 	    verbose_name_plural ="InformesContables"
 
 class Bien(models.Model):
-    id=models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("\bW[0-9][0-9][0-9][0-9]\b", "El ID debe tener un formato WXXXX con X un número.")])
+    id=models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("W[0-9][0-9][0-9][0-9]", "El ID debe tener un formato WXXXX con X un número.")])
     nombre=models.CharField(max_length=50)
     descripcion=models.TextField(blank=True,max_length=200,null=True)
     valor=models.DecimalField(max_digits=8,decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))])
@@ -48,7 +48,7 @@ class Bien(models.Model):
 	    verbose_name_plural ="bienes"
 
 class Vehiculo(models.Model):
-    matricula = models.CharField(max_length=9, primary_key = True,validators=[RegexValidator("\b[0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z]\b", "Formato de matricula es XXXXCCC, con X un número y C una letra")])
+    matricula = models.CharField(max_length=9, primary_key = True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z]", "Formato de matricula es XXXXCCC, con X un número y C una letra")])
     numero_pasajeros = models.PositiveIntegerField()
     combustible = models.CharField(max_length=30)
     trasmision = models.CharField(max_length=30)
@@ -79,7 +79,7 @@ class Vehiculo(models.Model):
 
 class Producto(models.Model):
     factura = models.ForeignKey(Factura, on_delete=models.CASCADE,default=None)
-    idProducto = models.CharField(max_length=5,validators=[RegexValidator("\bP[0-9][0-9][0-9][0-9]\b", "El ID debe tener un formato PXXXX con X un número.")])
+    idProducto = models.CharField(max_length=5,validators=[RegexValidator("P[0-9][0-9][0-9][0-9]", "El ID debe tener un formato PXXXX con X un número.")])
     nombre = models.CharField(max_length=10)
     cantidad = models.PositiveIntegerField()
     precio = models.PositiveIntegerField()
@@ -92,7 +92,7 @@ class Producto(models.Model):
 
 
 class EmpleadoTrabaja(models.Model):
-  idEmpleado = models.CharField(max_length=10, primary_key=True,validators=[RegexValidator("\b[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z]\b", "El ID del empleado es su DNI, formato: XXXXXXXXC, con X un número y C una letra")])
+  idEmpleado = models.CharField(max_length=10, primary_key=True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z]", "El ID del empleado es su DNI, formato: XXXXXXXXC, con X un número y C una letra")])
   nombre = models.CharField(max_length=20)
   apellidos = models.CharField(max_length=20)
   nombre_puesto = models.ForeignKey(Puesto, on_delete=models.CASCADE)
@@ -106,7 +106,7 @@ class EmpleadoTrabaja(models.Model):
 
 
 class BalanceFinanciero(models.Model):
-  idBalance = models.CharField(max_length=5,validators=[RegexValidator("\bB[0-9][0-9][0-9][0-9]\b", "El ID debe tener un formato BXXXX con X un número.")])
+  idBalance = models.CharField(max_length=5,validators=[RegexValidator("B[0-9][0-9][0-9][0-9]", "El ID debe tener un formato BXXXX con X un número.")])
   fecha_realizacion = models.DateField("Fecha de realización")
   total_gastos = models.DecimalField(max_digits=20,decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))])
   total_ingresos = models.DecimalField(max_digits=20,decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))])
@@ -132,7 +132,7 @@ class ConsultaEmpleado(models.Model):
 
 #DNI VARCHAR(9) primary key references SolicitaAlquiler(dni), Nombrecliente VARCHAR(40));
 class Cliente(models.Model):
-    dni = models.CharField(max_length=9, primary_key=True,validators=[RegexValidator("\b[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z]\b", "El formato del DNI es XXXXXXXXC, con X un número y C una letra")])
+    dni = models.CharField(max_length=9, primary_key=True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z]", "El formato del DNI es XXXXXXXXC, con X un número y C una letra")])
     nombrecliente= models.CharField("Nombre del cliente", max_length=40)
 
     def __str__(self):
@@ -141,7 +141,7 @@ class Cliente(models.Model):
 
 #SolicitaAlquiler(  IDalquiler VARCHAR(5) PRIMARY KEY , ganancia REAL , precio REAL, duracion VARCHAR(34), dni VARCHAR(9) NOT NULL);
 class SolicitaAlquiler(models.Model):
-  idAlquiler = models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("\bA[0-9][0-9][0-9][0-9]\b", "El ID debe tener un formato AXXXX con X un número.")])
+  idAlquiler = models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("A[0-9][0-9][0-9][0-9]", "El ID debe tener un formato AXXXX con X un número.")])
   ganancia = models.DecimalField(max_digits=8,decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))])
   precio = models.DecimalField(max_digits=8,decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))])
   duracion = models.PositiveIntegerField()
