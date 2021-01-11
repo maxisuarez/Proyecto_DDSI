@@ -38,7 +38,7 @@ class Bien(models.Model):
     id=models.CharField(max_length=5, primary_key=True,validators=[RegexValidator("W[0-9][0-9][0-9][0-9]", "El ID debe tener un formato WXXXX con X un número.")])
     nombre=models.CharField(max_length=50)
     descripcion=models.TextField(blank=True,max_length=200,null=True)
-    valor=models.DecimalField(max_digits=8,decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))])
+    valor=models.DecimalField(max_digits=10,decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))])
     informe=models.ForeignKey(InformeContable,on_delete=models.CASCADE,default=None)
 
     def __str__(self):
@@ -48,7 +48,7 @@ class Bien(models.Model):
 	    verbose_name_plural ="bienes"
 
 class Vehiculo(models.Model):
-    matricula = models.CharField(max_length=9, primary_key = True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z]", "Formato de matricula es XXXXCCC, con X un número y C una letra")])
+    matricula = models.CharField(max_length=7, primary_key = True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z]", "Formato de matricula es XXXXCCC, con X un número y C una letra")])
     numero_pasajeros = models.PositiveIntegerField()
     combustible = models.CharField(max_length=30)
     trasmision = models.CharField(max_length=30)
@@ -92,7 +92,7 @@ class Producto(models.Model):
 
 
 class EmpleadoTrabaja(models.Model):
-  idEmpleado = models.CharField(max_length=10, primary_key=True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z]", "El ID del empleado es su DNI, formato: XXXXXXXXC, con X un número y C una letra")])
+  idEmpleado = models.CharField(max_length=9, primary_key=True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z]", "El ID del empleado es su DNI, formato: XXXXXXXXC, con X un número y C una letra")])
   nombre = models.CharField(max_length=20)
   apellidos = models.CharField(max_length=20)
   nombre_puesto = models.ForeignKey(Puesto, on_delete=models.CASCADE)

@@ -39,6 +39,7 @@
                 <th>Nombre</th>
                 <th>Departamento</th>
                 <th>Nº Vacantes</th>
+                <th>Empleados</th>
                 <th>Aptitudes</th>
                 <th>Requisitos</th>
                 <th>Sueldo(€)</th>
@@ -52,21 +53,23 @@
                 <td>{{ item.nombre_puesto }}</td>
                 <td>{{ item.departamento }}</td>
                 <td>{{ item.numero_de_vacantes }}</td>
-                <td>{{ item.aptitudes_necesarias }}</td>
-                <td>{{ item.requisitos_puesto }}</td>
-                <td>{{ item.sueldo }}</td>
-                <td>
-                    <center>
-                        {% csrf_token %}
-                        <a class="btn btn-info btn-sm" href="/editarPuesto/{{ item.pk }}">Editar</a>
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        {% csrf_token %}
-                        <a class="btn btn-danger btn-sm" href="/borrarPuesto/{{ item.pk }}">Borrar</a>
-                    </center>
-                </td>
+                <td>{% for i in item.empleadotrabaja_set.all %} {{ i }}
+                    <br/>----------<br/>{% endfor %}
+                    <td>{{ item.aptitudes_necesarias }}</td>
+                    <td>{{ item.requisitos_puesto }}</td>
+                    <td>{{ item.sueldo }}</td>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-info btn-sm" href="/editarPuesto/{{ item.pk }}">Editar</a>
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            {% csrf_token %}
+                            <a class="btn btn-danger btn-sm" href="/borrarPuesto/{{ item.pk }}">Borrar</a>
+                        </center>
+                    </td>
 
             </tr>
             {% endfor %}
