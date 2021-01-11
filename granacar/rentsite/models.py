@@ -78,8 +78,8 @@ class Vehiculo(models.Model):
 
 
 class Producto(models.Model):
-    factura = models.ForeignKey(Factura, on_delete=models.CASCADE,default=None,validators=[RegexValidator("P[0-9][0-9][0-9][0-9]", "El ID debe tener un formato PXXXX con X un número.")])
-    idProducto = models.CharField(max_length=5)
+    factura = models.ForeignKey(Factura, on_delete=models.CASCADE,default=None)
+    idProducto = models.CharField(max_length=5,validators=[RegexValidator("P[0-9][0-9][0-9][0-9]", "El ID debe tener un formato PXXXX con X un número.")])
     nombre = models.CharField(max_length=10)
     cantidad = models.PositiveIntegerField()
     precio = models.PositiveIntegerField()
