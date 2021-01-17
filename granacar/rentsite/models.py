@@ -93,7 +93,7 @@ class Producto(models.Model):
 
 
 class EmpleadoTrabaja(models.Model):
-  idEmpleado = models.CharField(max_length=9, primary_key=True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z]", "El ID del empleado es su DNI, formato: XXXXXXXXC, con X un número y C una letra")])
+  idEmpleado = models.CharField(max_length=10, primary_key=True,validators=[RegexValidator("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][A-Z]", "El ID del empleado es su DNI, formato: XXXXXXXXC, con X un número y C una letra")])
   nombre = models.CharField(max_length=20)
   apellidos = models.CharField(max_length=20)
   nombre_puesto = models.ForeignKey(Puesto, on_delete=models.CASCADE)
