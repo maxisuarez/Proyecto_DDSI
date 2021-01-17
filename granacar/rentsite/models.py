@@ -7,6 +7,7 @@ class Puesto(models.Model):
   nombre_puesto = models.CharField(max_length=40, primary_key=True)
   departamento = models.CharField(max_length=40)
   numero_de_vacantes = models.PositiveIntegerField()
+  descripcion_puesto = models.CharField(max_length=250, blank = True, null = True)
   aptitudes_necesarias = models.CharField(max_length=250, blank = True, null = True)
   requisitos_puesto = models.CharField(max_length=250, blank = True, null = True)
   sueldo = models.PositiveIntegerField()
